@@ -17,7 +17,8 @@ def load_moscow_buildings():
 	for i in reversed(range(len(a))):
 		if (a[i]['address'] is None) or (a[i]['address'].startswith('Пермь,')) or (
 				a[i]['address'].startswith('Санкт-Петербург,')) or (a[i]['address'].startswith('Нижний Новгород,')) or (
-				a[i]['address'].startswith('Вологодский гос'))or (a[i]['address'].startswith('г.Пермь,'))or (a[i]['address'].startswith('тест ')):
+					len(get_auditories(a[i]['buildingOid'])) < 5) or (
+				a[i]['address'].startswith('г.Пермь,')):
 			del a[i]
 	return a
 
@@ -78,6 +79,3 @@ def get_free_rooms(date, building_id):
 		auditory_lessons_list.append(
 				{'auditoriumOid': les['auditoriumOid'], 'auditorium': les['auditorium'], 'lessons': list(temp_list)})
 	return auditory_lessons_list
-
-
-print(load_moscow_buildings())
