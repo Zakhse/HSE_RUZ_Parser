@@ -12,6 +12,16 @@ def load_buildings():
 	return buildings_list
 
 
+def load_moscow_buildings():
+	a = load_buildings()
+	for i in reversed(range(len(a))):
+		if (a[i]['address'] is None) or (a[i]['address'].startswith('Пермь,')) or (
+				a[i]['address'].startswith('Санкт-Петербург,')) or (a[i]['address'].startswith('Нижний Новгород,')) or (
+				a[i]['address'].startswith('Вологодский гос'))or (a[i]['address'].startswith('г.Пермь,'))or (a[i]['address'].startswith('тест ')):
+			del a[i]
+	return a
+
+
 def get_auditories(building_id):
 	a = requests.get("http://ruz.hse.ru/ruzservice.svc/auditoriums?buildingoid=" + str(building_id))
 	auditories_list = json.loads(a.text)
@@ -68,3 +78,6 @@ def get_free_rooms(date, building_id):
 		auditory_lessons_list.append(
 				{'auditoriumOid': les['auditoriumOid'], 'auditorium': les['auditorium'], 'lessons': list(temp_list)})
 	return auditory_lessons_list
+
+
+print(load_moscow_buildings())
