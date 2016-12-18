@@ -77,5 +77,9 @@ def get_free_rooms(date, building_id):
 				if pair_list[p - 1]['begin'] < les['endLesson'] and pair_list[p - 1]['end'] > les['beginLesson']:
 					temp_list.remove(p)
 		auditory_lessons_list.append(
-				{'auditoriumOid': les['auditoriumOid'], 'auditorium': les['auditorium'], 'lessons': list(temp_list)})
+				{
+					'auditoriumOid': aud['auditoriumOid'],
+					'number'       : aud['number'],
+					'lessons'      : list(temp_list)
+				})
 	return auditory_lessons_list
