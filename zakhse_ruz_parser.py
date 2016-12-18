@@ -84,3 +84,4 @@ def get_free_rooms(date, building_id):
 						'lessons'      : list(temp_list)
 					})
 	return auditory_lessons_list
+print(get_free_rooms("2016.12.17",49))
