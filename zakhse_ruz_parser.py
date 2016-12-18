@@ -76,10 +76,12 @@ def get_free_rooms(date, building_id):
 			for p in temp_list_copy:
 				if pair_list[p - 1]['begin'] < les['endLesson'] and pair_list[p - 1]['end'] > les['beginLesson']:
 					temp_list.remove(p)
-		auditory_lessons_list.append(
-				{
-					'auditoriumOid': aud['auditoriumOid'],
-					'number'       : aud['number'],
-					'lessons'      : list(temp_list)
-				})
+		if (len(temp_list)):
+			auditory_lessons_list.append(
+					{
+						'auditoriumOid': aud['auditoriumOid'],
+						'number'       : aud['number'],
+						'lessons'      : list(temp_list)
+					})
 	return auditory_lessons_list
+print(get_free_rooms("2016.12.17",49))
